@@ -1,20 +1,19 @@
 {
-    "manifest_version": 3,
-    "name": "Keyword Highlighter",
-    "version": "1.0",
-    "permissions": ["activeTab", "storage"],
-    "action": {
-        "default_popup": "popup.html"
-    }    ,
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"],
-        "css": ["css/styles.css"]
-      }
-    ],
-    "background": {
-        "service_worker": "service_worker.js"
+  "manifest_version": 3,
+  "name": "Keyword Highlighter",
+  "version": "1.0",
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["css/styles.css"]
     }
+  ],
+  "background": {
+    "service_worker": "service_worker.js"
   }
-  
+}
