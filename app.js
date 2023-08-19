@@ -1,16 +1,10 @@
-const fs = require("fs");
+var fs = require('fs');
 
-function replacer(key,value){
-  if (key === 'Mean') {
-		return undefined;
-	}
-	return value;
-}
+const bufferData = fs.readFileSync('info.json');
+const dataJSON = bufferData.toString();
+const data = JSON.parse(dataJSON);
 
-var myStructure = {
-    "Python":"オブジェクト指向の汎用的なプログラミング言語",
-    "Rust":"C++に似たメモリ安全性を保証できる新しめなプログラミング言語",
-    "Javascript" : "webなどで広く使われている言語"
-}
-var jsonData = JSON.stringify(myStructure,replacer,"\t");
-fs.writeFileSync("example.json",jsonData);
+data["ddd"] = "iii"; // 新しい要素を既存のオブジェクトに追加
+
+const updatedJSON = JSON.stringify(data);
+fs.writeFileSync('info.json', updatedJSON);
