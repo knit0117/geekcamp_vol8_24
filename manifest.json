@@ -4,7 +4,7 @@
     "version": "1.0",
     "permissions": ["activeTab", "storage","tabs","contextMenus"],
     "action": {
-        "default_popup": "popup.html","index.html",
+        "default_popup": "popup.html",
         "default_icon": {
             "32":"IMG_0531.png"
         }
@@ -18,12 +18,12 @@
       }
     ],
     "background": {
-        "service_worker": "service_worker.js","getstr.js"
+        "service_worker": ["service_worker.js","getstr.js"]
     },
     "icons": {
       "16": "images/icon16.png",
       "48": "images/icon48.png",
       "128": "images/icon128.png"
     }
-  }
 }
+
