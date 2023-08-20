@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const wordMeaning = document.getElementById("wordMeaning");
     // const modalClose = document.querySelector(".modalClose");
 
-    const jsonUrl = "sample.json";
+    const jsonUrl = chrome.storage.sync.get(["info"]);
     
     document.addEventListener("mousedown", function(event) {
         const selectedText = window.getSelection().toString();
