@@ -6,11 +6,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
     document.addEventListener("mousedown", function(event) {
         const selectedText = window.getSelection().toString();
-        console.log(selectedText)
+        console.log(selectedText);
         if (selectedText !== "") {
             chrome.storage.sync.get(["info"]).then(function(result){
                 const data = result.info;
                 const wordData = data[selectedText];
+                console.log(wordData);
                 if (wordData) {
                     wordTitle.textContent = "単語：" + selectedText;
                     wordMeaning.textContent = "意味：" + wordData.mean;
