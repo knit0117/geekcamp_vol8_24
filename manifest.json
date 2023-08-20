@@ -1,19 +1,29 @@
-{ 
-    "manifest_version":3,
-    "name": "範囲選択した文字の取得",
-    "version":"1.0.0",
-    "icons":{
-        "48": "images/icon.png"
-      },
-    "description":"範囲選択した文字の取得",
-    "permissions":["activeTab","contextMenus"],
-    "background": {
-            "service_worker": "getstr.js"
-        },
-    "content_scripts":[
-        {
-            "matches":["<all_urls>"],
-            "js":["selectstr.js"]
+{
+    "manifest_version": 3,
+    "name": "Wordcapture",
+    "version": "1.0",
+    "permissions": ["activeTab", "storage","tabs","contextMenus"],
+    "action": {
+        "default_popup": "popup.html","index.html",
+        "default_icon": {
+            "32":"IMG_0531.png"
         }
-    ]
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "exclude_matches": ["https://www.google.com/*"],
+        "js": ["content.js","selectstr.js"],
+        "css": ["css/styles.css"]
+      }
+    ],
+    "background": {
+        "service_worker": "service_worker.js","getstr.js"
+    },
+    "icons": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  }
 }
