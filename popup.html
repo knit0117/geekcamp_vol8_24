@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="popup.css">
     <title>Wordcapture</title>
-    <style>
+    <!-- <style>
         body {
             width: 200px;
         }
-    </style>
+    </style> -->
     <script>
   function downloadText(fileName, text) {
     const blob = new Blob([text], { type: 'text/plain' });
@@ -22,22 +22,26 @@
   }
     </script>
   </head>
-  <body style="min-width:200px;min-height:50px">
-    <button type="button" id="inputFile">Import</button>
-    <pre><code id="contents"></code></pre>
-    <button type="button" id="outputFile">Export</button>
-    <script src="test.js"></script>
-    <script src="myscript.js"></script>
-    <h2>登録済み辞書</h2>
+  <body>
+    <div class="import-export">
+      <h2>登録済み辞書</h2>
+      <button type="button" id="inputFile">Import</button>
+      <pre><code id="contents"></code></pre>
+      <button type="button" id="outputFile">Export</button>
+      <script src="test.js"></script>
+      <script src="myscript.js"></script>
+    </div>
+    <div>
+      <ul id="keywordList"></ul>
+    </div>
     <ul id="keywordList"></ul>
     <script src="popup.js"></script>
+
     <main>
     <div id="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 id="wordTitle">単語：</h1>
-                <!-- ↓これいらない気がする(辞書画面外タップすると消えるから) -->
-                <!-- <span class="modalClose">&times;</span>  -->
             </div>
             <div class="modal-body">
                 <p id="wordMeaning">意味：</p>
@@ -46,10 +50,13 @@
     </div>
     </main>
     <script src="script.js"></script>
-    <input type="text" id="api_key"><br />
-    <input type="text" id="secret_key"><br />
-    <button id="save">Save</button>
-    <div id="status"></div>
+    <div class="save">
+      <input type="text" id="api_key"><br />
+      <input type="text" id="secret_key"><br />
+      <button id="save">Save</button>
+      <div id="status"></div>
+    </div>
     <script src="options.js"></script>
+
   </body>
 </html>
