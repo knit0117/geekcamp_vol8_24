@@ -3,15 +3,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const wordTitle = document.getElementById("wordTitle");
     const wordMeaning = document.getElementById("wordMeaning");
     // const modalClose = document.querySelector(".modalClose");
-
-    const jsonUrl = chrome.storage.sync.get(["info"]);
     
     document.addEventListener("mousedown", function(event) {
         const selectedText = window.getSelection().toString();
         if (selectedText !== "") {
-            fetch(jsonUrl)
-            .then(response => response.json())
-            .then(data => {
+            chrome.storage.sync.get(["info"],function(result){
+                const data = result.info;
                 const wordData = data[selectedText];
                 if (wordData) {
                     wordTitle.textContent = "単語：" + selectedText;
