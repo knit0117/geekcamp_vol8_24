@@ -7,10 +7,7 @@
       },
     "description":"範囲選択した文字の取得",
     "permissions":["activeTab"],
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["getchar.js"]
+    "background": {
+            "service_worker": "getchar.js"
         }
-    ]
 }
