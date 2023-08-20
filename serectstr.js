@@ -1,7 +1,5 @@
-document.addEventListener('select',function(){
-    (async () => {
-        const selectedText = window.getSelection().toString();
-        const response = await chrome.runtime.sendMessage({selectedText});
-        console.log(response);
-      })();
-});
+chrome.extension.onRequest.addListener(() => {
+    const selection = window.getSelection()
+    const text = selection.toString()
+    console.log(text)
+})

@@ -1,9 +1,8 @@
-function getstr(){
-    var select = info.selectionText;
-    return select;
-}
-
-document.addEventListener('select',function(){
-    var text = getstr();
-    console.log(text);
-});
+chrome.contextMenus.create({
+    title: "単語を辞書に登録",
+    contexts:["selection"],
+    onclick(getstr,tab){
+        console.log(getstr)
+        chrome.tabs.sendMessage(tab.id,{key:getstr})
+    }
+})

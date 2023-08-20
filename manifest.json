@@ -6,7 +6,7 @@
         "48": "images/icon.png"
       },
     "description":"範囲選択した文字の取得",
-    "permissions":["activeTab"],
+    "permissions":["activeTab","contextMenus"],
     "background": {
             "service_worker": "getstr.js"
         },
