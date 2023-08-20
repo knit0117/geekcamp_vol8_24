@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Keyword Highlighter</title>
+  <head>
+    <meta charset="utf-8" />
+     <title>Wordcapture</title>
     <style>
         body {
             width: 200px;
         }
     </style>
-</head>
-<body>
+    <script>
+  function downloadText(fileName, text) {
+    const blob = new Blob([text], { type: 'text/plain' });
+    const aTag = document.createElement('a');
+    aTag.href = URL.createObjectURL(blob);
+    aTag.target = '_blank';
+    aTag.download = fileName;
+    aTag.click();
+    URL.revokeObjectURL(aTag.href);
+  }
+    </script>
+  </head>
+  <body style="min-width:150px;min-height:50px">
+    <button type="button" id="inputFile">Import</button>
+    <pre><code id="contents"></code></pre>
+    <button type="button" id="outputFile">Export</button>
+    <script src="test.js"></script>
+    <script src="myscript.js"></script>
     <h2>登録済み辞書</h2>
     <ul id="keywordList"></ul>
     <script src="popup.js"></script>
-</body>
+  </body>
 </html>
