@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const selectedText = window.getSelection().toString();
         console.log(selectedText)
         if (selectedText !== "") {
-            chrome.storage.sync.get(["info"],function(result){
+            chrome.storage.sync.get(["info"]).then(function(result){
                 const data = result.info;
                 const wordData = data[selectedText];
                 if (wordData) {
