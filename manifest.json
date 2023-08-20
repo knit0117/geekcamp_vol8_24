@@ -1,0 +1,15 @@
+{
+  "name": "ポップアップメニュー表示テスト",
+  "version": "1.00",
+  "description": "ポップアップメニュー表示テスト",
+  "permissions": [
+    "storage"
+],
+  "action": {
+    "default_icon":{
+      "32":"IMG_0531.png"
+    },
+    "default_popup": "index.html"
+  },
+  "manifest_version": 3
+}
