@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     document.addEventListener("mousedown", function(event) {
         const selectedText = window.getSelection().toString();
+        console.log(selectedText)
         if (selectedText !== "") {
             chrome.storage.sync.get(["info"],function(result){
                 const data = result.info;
