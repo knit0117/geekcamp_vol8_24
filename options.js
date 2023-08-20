@@ -1,49 +1,70 @@
-function save_options() {
-    var api_key = document.getElementById('api_key').value;
-    var secret_key = document.getElementById('secret_key').value;
-    
-    chrome.storage.sync.set({
-        api_key: api_key,
-        secret_key: secret_key
-    }, function () {
-        var status = document.getElementById('status');
-        status.textContent = 'Saved.';
-        setTimeout(function () {
-            status.textContent = '';
-        }, 750);
-
-        // Update info.json file
-        var info = {
-            api_key: api_key,
-            secret_key: secret_key
-        };
-        updateInfoJson(info);
-
-        window.close();
+document.addEventListener("DOMContentLoaded", function () {
+    // Load existing values from storage and populate the input fields
+    chrome.storage.sync.get(["api_key", "secret_key"], function (data) {
+      var apiKey = data.api_key || "";
+      var secretKey = data.secret_key || "";
+  
+      // Set initial input values to empty strings
+      var apiKeyInput = document.getElementById("api_key");
+      var secretKeyInput = document.getElementById("secret_key");
+      apiKeyInput.value = "";
+      secretKeyInput.value = "";
+  
+      // Set event listener for save button click
+      document.getElementById("save").addEventListener("click", function () {
+        // Get values from input fields
+        var apiKey = apiKeyInput.value;
+        var secretKey = secretKeyInput.value;
+  
+        // Load existing JSON data from storage
+        chrome.storage.sync.get(["info"], function (storedData) {
+          var existingInfo = storedData.info || {};
+  
+          // Update existingInfo with the new apiKey and secretKey pair
+          existingInfo[apiKey] = secretKey;
+  
+          // Save updated JSON data to storage
+          chrome.storage.sync.set(
+            {
+              info: existingInfo,
+            },
+            function () {
+              // Update status to indicate successful save
+              var status = document.getElementById("status");
+              status.textContent = "Saved!";
+              window.close();
+              setTimeout(function () {
+                status.textContent = "";
+              }, 1500);
+            }
+          );
+        });
+      });
     });
-}
+  
 
-function updateInfoJson(info) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", "info.json", true);
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("info.json updated successfully.");
-        }
-    };
-    xhr.send(JSON.stringify(info));
-}
 
-function restore_options() {
-    chrome.storage.sync.get({
-        api_key: 'input here',
-        secret_key: 'input here'
-    }, function (items) {
-        document.getElementById('api_key').value = items.api_key;
-        document.getElementById('secret_key').value = items.secret_key;
+    chrome.storage.sync.get(["api_key", "secret_key", "info"], function (data) {
+        var apiKey = data.api_key;
+        var secretKey = data.secret_key;
+        var existingInfo = data.info || {};
+      
+        // 取得した値を使用する処理を記述
+      
+        existingInfo[apiKey] = secretKey;
+      
+        console.log("Existing Data:", data);
+        console.log("Updated Info:", existingInfo);
+      
+        // Save updated info back to storage
+        chrome.storage.sync.set(
+          {
+            info: existingInfo,
+          },
+          function () {
+            console.log("Updated info saved.");
+          }
+        );
+      });
     });
-}
 
-document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click', save_options);
