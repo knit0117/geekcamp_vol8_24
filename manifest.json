@@ -8,6 +8,6 @@
     "description":"範囲選択した文字の取得",
     "permissions":["activeTab"],
     "background": {
-            "service_worker": "getchar.js"
+            "service_worker": "getstr.js"
         }
 }
