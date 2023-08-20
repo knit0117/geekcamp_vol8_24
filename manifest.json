@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "ハッカソン　試作品",
+    "version": "1.0.0",
+    "description": "Qiitaの記事の文字間隔をあける。　また辞書を作成して、表示させるｄ",
+    "permissions":["tabs"],
+    "action": {
+        "default_title": "sample",
+        "default_popup": "popup.html",
+        "default_icon": {
+          "32": "Chapter_11_32.png"
+        }
+      }
+
+
+
+
+    
+}
