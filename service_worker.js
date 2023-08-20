@@ -6,9 +6,13 @@ chrome.runtime.onInstalled.addListener(() => {
       });
 });
 
-chrome.extension.onMessage.addListener(() => {
-    const selection = window.getSelection()
-    const text = selection.toString()
-    console.log(text)
-})
+chrome.contextMenus.create({
+  id:"selectstr",
+  title: "単語を辞書に登録",
+  contexts:["selection"]
+});
+chrome.contextMenus.onClicked.addListener(function (info, tab) {
+      let word = info.selectionText; 
+      console.log(word);
+});
   
